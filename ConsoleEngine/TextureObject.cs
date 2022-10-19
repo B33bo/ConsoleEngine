@@ -9,6 +9,7 @@ namespace ConsoleEngine;
 public class TextureObject : GameObject
 {
     public string[] Texture = Array.Empty<string>();
+    public bool DoubleUp { get; set; } = true;
 
     public Color[,] Foreground = new Color[0, 0];
     public Color[,] Background = new Color[0, 0];

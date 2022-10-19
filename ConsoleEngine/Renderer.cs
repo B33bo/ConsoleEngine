@@ -4,10 +4,16 @@ namespace ConsoleEngine;
 
 internal class Renderer
 {
+    public static bool DoRendering { get; set; } = true;
     internal static Queue<VectorInt> outOfBoundsClear = new();
+
+    public static void ForceUpdate() => Render();
 
     internal static void Render()
     {
+        if (!DoRendering)
+            return;
+
         int horizontalBarLength = GameWindow.ScreenDimensions.x;
 
         if (GameManager.DoubleUpCharacters)
@@ -208,6 +214,7 @@ internal class Renderer
             int y = textObject.RenderPosition.y;
             if (characters[position, y].Layer > textObject.Layer)
                 continue;
+
             characters[position, y] = new ScreenInformation(
                 textObject.Text[i], textObject.Layer,
                 new(textObject.GetForegroundAt(i), textObject.GetBackgroundAt(i)));
@@ -255,8 +262,8 @@ internal class Renderer
                     continue;
 
                 VectorInt offscreenPos = textureObject.PositionInt + new VectorInt(x, y);
-                offscreenList.Add(new ScreenAndPositionInformation(
-                    new(textureObject.Texture[y][x], textureObject.Layer, colorInformation), offscreenPos));
+                offscreenList.Add(new ScreenAndPositionInformation(new(textureObject.Texture[y][x], textureObject.Layer,
+                    colorInformation), offscreenPos));
             }
         }
     }
@@ -265,6 +272,13 @@ internal class Renderer
     {
         int x = gameObject.RenderPosition.x;
         int y = gameObject.RenderPosition.y;
+
+        bool doubleUp = GameManager.DoubleUpCharacters;
+
+        if (gameObject is TextObject)
+            doubleUp = false;
+        else if (gameObject is TextureObject textureObject)
+            doubleUp = textureObject.DoubleUp && GameManager.DoubleUpCharacters;
 
         characters[x, y] = new ScreenInformation(
             gameObject.Character, gameObject.Layer, new(gameObject.ForegroundColor, gameObject.BackgroundColor));
@@ -276,7 +290,12 @@ internal class Renderer
             return;
 
         ColorInformation color = new(gameObject.ForegroundColor, gameObject.BackgroundColor);
-        offscreenList.Add(new(new(gameObject.Character, gameObject.Layer, color), gameObject.PositionInt));
+
+        ScreenInformation screenInformation = new(gameObject.Character, gameObject.Layer, color);
+
+        ScreenAndPositionInformation data = new(screenInformation, gameObject.PositionInt);
+
+        offscreenList.Add(data);
     }
 
     record struct ScreenInformation(char? Character, int Layer, ColorInformation Color);

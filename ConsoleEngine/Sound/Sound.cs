@@ -7,21 +7,21 @@ public static class Sound
 {
     public static bool SoundAvailable => RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 
-    [SupportedOSPlatform("windows")]
     public static void PlaySound(params Note[] sound)
     {
         Task.Factory.StartNew(() => PlaySoundThreaded(sound, null));
     }
 
-    [SupportedOSPlatform("windows")]
     public static void PlaySound(Note[] sound, Action onFinished)
     {
         Task.Factory.StartNew(() => PlaySoundThreaded(sound, onFinished));
     }
 
-    [SupportedOSPlatform("windows")]
     private static void PlaySoundThreaded(Note[] sound, Action? onFinished)
     {
+        if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            return;
+
         for (int i = 0; i < sound.Length; i++)
         {
             if ((int)sound[i].Frequency < 37)

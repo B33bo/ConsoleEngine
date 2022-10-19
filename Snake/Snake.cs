@@ -98,15 +98,18 @@ internal class Snake : GameObject
         Score = tails.Count;
         scoreText.Text = $"Score: {tails.Count}";
 
-        var possibleKeys = Enum.GetValues<PianoKey>();
-        keys.Add(possibleKeys[new Random(tails.Count).Next(0, possibleKeys.Length)]);
+        const short min = (short)PianoKey.C4;
+        const short max = (short)PianoKey.C6;
 
-        Note[] notes = new Note[possibleKeys.Length];
+        var number = (Math.Sin(tails.Count / 3f) + 1) / 2;
+        keys.Add((PianoKey)((max - min) * number + min));
+
+        Note[] notes = new Note[keys.Count];
         for (int i = 0; i < notes.Length; i++)
         {
-            notes[i] = new(possibleKeys[i], 1000 / notes.Length);
+            notes[i] = new(keys[i], Math.Max(1000 / notes.Length, 300));
         }
-        Sound.PlaySound(new Note(PianoKey.C4, 1000));
+        Sound.PlaySound(notes);
     }
 
     private void UpdateTails(VectorInt lastPos)

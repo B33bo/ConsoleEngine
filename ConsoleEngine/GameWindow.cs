@@ -83,5 +83,7 @@ public sealed class GameWindow : GameObject
     {
         if (key == ConsoleKey.F5)
             GameManager.ScreenRefresh();
+        if (key == ConsoleKey.F6)
+            DevConsole.ReadCommand();
     }
 }

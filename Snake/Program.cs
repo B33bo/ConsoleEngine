@@ -18,6 +18,7 @@ public static class Program
             RenderOffscreen = true,
         };
 
+        Console.Title = "Snake";
         GameManager.DoubleUpCharacters = true;
         GameWindow.Instance.ForegroundColor = new Color(255, 255, 0);
         GameWindow.Instance.Position = new(0, 0);

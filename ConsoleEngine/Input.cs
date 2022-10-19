@@ -63,7 +63,7 @@ internal static class Input
                 askingQuestion = false;
                 break;
             case ConsoleKey.Backspace:
-                if (Console.CursorLeft < questionOrigin.x)
+                if (Console.CursorLeft == questionOrigin.x)
                     break;
                 Console.CursorLeft--;
                 Console.Write(" ");
