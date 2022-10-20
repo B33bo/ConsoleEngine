@@ -12,6 +12,7 @@ public static class GameManager
     private static readonly Stopwatch stopwatch = new();
 
     public static double Time => stopwatch.Elapsed.TotalSeconds;
+    public static double FPS { get; private set; }
 
     private static double timeOfLastRender;
 
@@ -117,6 +118,7 @@ public static class GameManager
 
             Renderer.Render();
 
+            FPS = 1 / (Time - timeOfLastRender);
             timeOfLastRender = Time;
             while (Time - timeOfLastRender < MinFrameDelta) ;
         }
