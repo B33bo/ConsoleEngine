@@ -7,8 +7,6 @@ internal class Renderer
     public static bool DoRendering { get; set; } = true;
     internal static Queue<VectorInt> outOfBoundsClear = new();
 
-    public static void ForceUpdate() => Render();
-
     internal static void Render()
     {
         if (!DoRendering)

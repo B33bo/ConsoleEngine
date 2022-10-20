@@ -4,6 +4,7 @@ namespace ConsoleEngine;
 
 public static class GameManager
 {
+    public static bool IsPlaying { get; private set; } = true;
 
     internal static List<GameObject> gameObjects = new();
     public static GameObject[] GameObjects => gameObjects.ToArray();
@@ -75,9 +76,17 @@ public static class GameManager
     }
     #endregion
 
+    public static void Stop()
+    {
+        IsPlaying = false;
+        Renderer.DoRendering = false;
+        Console.Clear();
+        Console.WriteLine("Press any key to end");
+    }
+
     private static void UpdateLoop()
     {
-        while (true)
+        while (IsPlaying)
         {
             Console.CursorVisible = false;
 

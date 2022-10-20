@@ -52,7 +52,8 @@ public static class DevConsole
         if (input == "clr" || input == "clear" || input == "cls")
             commandCallback.Clear();
 
-        PerformCommand();
+        if (input != "exit")
+            PerformCommand();
     }
 
     public static void LoadBuiltinCommands()
@@ -147,7 +148,7 @@ public static class DevConsole
 
         new DevCommand("exit", "quits the game", _ =>
         {
-            Environment.Exit(0);
+            GameManager.Stop();
             return "";
         }).Register();
 

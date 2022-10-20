@@ -74,6 +74,9 @@ internal class Snake : GameObject
             _ => direction,
         };
 
+        if (key == ConsoleKey.Escape)
+            GameManager.Stop();
+
         if (-newDirection == directionOfLastMove)
             return;
 
