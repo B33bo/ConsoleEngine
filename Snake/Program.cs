@@ -25,6 +25,9 @@ public static class Program
         GameManager.AddObject(snake);
         GameManager.AddObject(fpsreader);
 
+        GameManager.AddObject(new TestObject());
+        GameManager.AddObject(new TestObject());
+
         GameManager.Start();
     }
 }

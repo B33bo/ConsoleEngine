@@ -11,11 +11,10 @@ public class GameObject
         get => _position;
         set
         {
-            VectorInt vectorInt = (VectorInt)value;
-
-            if (vectorInt == PositionInt)
+            if (value == _position)
                 return;
 
+            VectorInt vectorInt = (VectorInt)value;
             bool setPosition = true;
 
             var gameobjects = GameManager.GameObjects;

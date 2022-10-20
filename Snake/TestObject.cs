@@ -5,6 +5,7 @@ namespace Snake;
 
 internal class TestObject : GameObject
 {
+    int c = 0;
     public TestObject()
     {
         Character = 'G';
