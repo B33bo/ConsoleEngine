@@ -37,6 +37,6 @@ internal class TestObject : GameObject
                 break;
         }
 
-        GameWindow.Instance.Position += movement;
+        Position += movement;
     }
 }

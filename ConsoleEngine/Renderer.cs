@@ -115,6 +115,8 @@ internal class Renderer
 
             if (offscreen[i].Position.x < 0 || offscreen[i].Position.y < 0)
                 continue;
+            if (offscreen[i].Position.x > 128 || offscreen[i].Position.y > 128)
+                continue;
             Console.SetCursorPosition(offscreen[i].Position.x, offscreen[i].Position.y);
 
             string thing2write = ColorStringConversion.ToConsoleColor(offscreen[i].ScreenInformation.Character.ToString() + "",

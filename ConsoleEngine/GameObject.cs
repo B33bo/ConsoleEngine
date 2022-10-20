@@ -36,7 +36,7 @@ public class GameObject
             if (!setPosition)
                 return;
 
-            if (!_position.IsInBoundsScreenSpace && _position.x > 0 && _position.y > 0)
+            if (!_position.IsInBoundsScreenSpace && _position.x > 0 && _position.y > 0 && RenderOffscreen && _position.x < 128 && _position.y < 128)
                 Renderer.outOfBoundsClear.Enqueue(PositionInt);
 
             _position = value;
