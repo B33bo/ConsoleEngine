@@ -36,6 +36,8 @@ internal static class ColorStringConversion
 
     public static string BeginColor(this Color color, bool foreground)
     {
+        if (!color.Enabled)
+            return "";
         if (foreground)
             return $"{START_COLOR}[{FOREGROUND};2;{color.R};{color.G};{color.B}m";
         return $"{START_COLOR}[{BACKGROUND};2;{color.R};{color.G};{color.B}m";

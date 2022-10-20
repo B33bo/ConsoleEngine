@@ -43,6 +43,9 @@ public static class GameManager
         Task.Factory.StartNew(Input.GetKeyForever);
         ConsoleColorManager.Enable();
         Console.OutputEncoding = System.Text.Encoding.Unicode;
+
+        Console.Clear();
+        Console.ResetColor();
         UpdateLoop();
     }
 
