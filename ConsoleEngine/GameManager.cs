@@ -81,6 +81,7 @@ public static class GameManager
         IsPlaying = false;
         Renderer.DoRendering = false;
         Console.Clear();
+        gameObjects.Clear();
         Console.WriteLine("Press any key to end");
     }
 
