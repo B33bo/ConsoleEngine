@@ -14,6 +14,9 @@ public static class ColorStringConversion
     public const int FOREGROUND = 38;
     public const int BACKGROUND = 48;
 
+    public static void Enable() =>
+        ConsoleColorManager.Enable();
+
     public static string ToConsoleColor(string text, Color foreground, Color background)
     {
         if (!Color.ColorsAllowed)
