@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleEngine;
 
-internal static class ColorStringConversion
+public static class ColorStringConversion
 {
     public const string START_COLOR = "\u001b";
     public const string END_COLOR = "\u001b[0m";

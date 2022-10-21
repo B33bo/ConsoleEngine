@@ -50,7 +50,10 @@ public static class DevConsole
             return;
         }
         if (input == "clr" || input == "clear" || input == "cls")
+        {
             commandCallback.Clear();
+            Console.Clear();
+        }
 
         if (input != "exit")
             PerformCommand();
