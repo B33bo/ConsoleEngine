@@ -4,12 +4,11 @@ namespace ConsoleEngine;
 
 internal class Renderer
 {
-    public static bool DoRendering { get; set; } = true;
     internal static Queue<VectorInt> outOfBoundsClear = new();
 
     internal static void Render()
     {
-        if (!DoRendering)
+        if (!GameManager.DoRendering)
             return;
 
         int horizontalBarLength = GameWindow.ScreenDimensions.x;

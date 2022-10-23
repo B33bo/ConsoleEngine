@@ -5,6 +5,7 @@ namespace ConsoleEngine;
 public static class GameManager
 {
     public static bool IsPlaying { get; private set; } = true;
+    public static bool DoRendering { get; set; } = true;
 
     internal static List<GameObject> gameObjects = new();
     public static GameObject[] GameObjects => gameObjects.ToArray();
@@ -39,6 +40,7 @@ public static class GameManager
 
     public static void Start()
     {
+        IsPlaying = true;
         stopwatch.Start();
 
         Task.Factory.StartNew(Input.GetKeyForever);
@@ -83,7 +85,7 @@ public static class GameManager
     public static void Stop()
     {
         IsPlaying = false;
-        Renderer.DoRendering = false;
+        GameManager.DoRendering = false;
         Console.Clear();
         gameObjects.Clear();
         Console.WriteLine("Press any key to end");

@@ -1,6 +1,6 @@
 ﻿namespace ConsoleEngine;
 
-internal class FPSreader : TextObject
+public class FPSreader : TextObject
 {
     public override void Update(double deltaTime)
     {

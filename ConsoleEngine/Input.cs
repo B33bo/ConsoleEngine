@@ -44,9 +44,6 @@ internal static class Input
                 {
                     if (maxQuestionLength.Value <= 0)
                         break;
-                    Console.SetCursorPosition(questionOrigin.x + answer.Length - 1, questionOrigin.y);
-                    Console.Write(" ");
-                    answer.Remove(answer.Length - 1, 1);
                     break;
                 }
                 answer.Append(keyInfo.KeyChar);
@@ -64,6 +61,8 @@ internal static class Input
                 break;
             case ConsoleKey.Backspace:
                 if (Console.CursorLeft == questionOrigin.x)
+                    break;
+                if (answer.Length == 0)
                     break;
                 Console.CursorLeft--;
                 Console.Write(" ");

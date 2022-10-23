@@ -25,7 +25,7 @@ public static class DevConsole
         Console.CursorVisible = true;
         Console.Write(commandCallback.ToString());
 
-        Renderer.DoRendering = false;
+        GameManager.DoRendering = false;
 
         Console.Write("> ");
         string? input = GameManager.AskQuestion(new VectorInt(Console.CursorLeft, Console.CursorTop));
@@ -45,7 +45,7 @@ public static class DevConsole
         if (input == "end")
         {
             Console.Clear();
-            Renderer.DoRendering = true;
+            GameManager.DoRendering = true;
             Console.CursorVisible = false;
             return;
         }
@@ -91,12 +91,12 @@ public static class DevConsole
         new DevCommand("renderingEnabled", "turns rendering on/off", args =>
         {
             if (args[1].ToLower() == "false")
-                Renderer.DoRendering = false;
+                GameManager.DoRendering = false;
 
             if (args[1].ToLower() == "true")
-                Renderer.DoRendering = true;
+                GameManager.DoRendering = true;
 
-            return Renderer.DoRendering.ToString();
+            return GameManager.DoRendering.ToString();
         }).Register();
 
         new DevCommand("refresh", "refreshes the screen", args =>
