@@ -26,6 +26,11 @@ public sealed class GameWindow : GameObject
         }
     }
 
+    internal static void ResetInst()
+    {
+        _instance = null;
+    }
+
     public GameWindow()
     {
         Invisible = true;

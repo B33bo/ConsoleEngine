@@ -29,7 +29,7 @@ internal static class Input
 
     internal static void GetKeyForever()
     {
-        while (true)
+        while (GameManager.IsPlaying)
         {
             GetKey();
         }

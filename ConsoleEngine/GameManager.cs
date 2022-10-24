@@ -41,6 +41,7 @@ public static class GameManager
     public static void Start()
     {
         IsPlaying = true;
+        DoRendering = true;
         stopwatch.Start();
 
         Task.Factory.StartNew(Input.GetKeyForever);
@@ -86,6 +87,7 @@ public static class GameManager
     {
         IsPlaying = false;
         GameManager.DoRendering = false;
+        GameWindow.ResetInst();
         Console.Clear();
         gameObjects.Clear();
         Console.WriteLine("Press any key to end");
@@ -96,6 +98,7 @@ public static class GameManager
         while (IsPlaying)
         {
             Console.CursorVisible = false;
+            double deltaTime = Time - timeOfLastRender;
 
             for (int i = 0; i < gameObjects.Count; i++)
             {
@@ -106,7 +109,7 @@ public static class GameManager
                     continue;
                 }
 
-                gameObjects[i].Update(Time - timeOfLastRender);
+                gameObjects[i].Update(deltaTime);
             }
 
             //order matters
