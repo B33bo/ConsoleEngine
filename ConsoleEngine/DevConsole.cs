@@ -63,10 +63,10 @@ public static class DevConsole
     {
         didLoad = true;
 
-        new DevCommand("", "", _ => "").Register();
-        new DevCommand("clear", "clears dev console", _ => "").Register();
+        new DevCommand("", "", true, _ => "").Register();
+        new DevCommand("clear", "clears dev console", true, _ => "").Register();
 
-        new DevCommand("help", "lists all of the commands and their descriptions", args =>
+        new DevCommand("help", "lists all of the commands and their descriptions", true, args =>
         {
             if (args.Length > 1)
             {
@@ -86,9 +86,9 @@ public static class DevConsole
             return str;
         }).Register();
 
-        new DevCommand("end", "ends the dev cosnole session", _ => "").Register();
+        new DevCommand("end", "ends the dev cosnole session", true, _ => "").Register();
 
-        new DevCommand("renderingEnabled", "turns rendering on/off", args =>
+        new DevCommand("renderingEnabled", "turns rendering on/off", true, args =>
         {
             if (args[1].ToLower() == "false")
                 GameManager.DoRendering = false;
@@ -99,13 +99,13 @@ public static class DevConsole
             return GameManager.DoRendering.ToString();
         }).Register();
 
-        new DevCommand("refresh", "refreshes the screen", args =>
+        new DevCommand("refresh", "refreshes the screen", true, args =>
         {
             GameManager.ScreenRefresh();
             return "";
         }).Register();
 
-        new DevCommand("maxfps", "change the max fps", args =>
+        new DevCommand("maxfps", "change the max fps", true, args =>
         {
             if (args.Length == 1)
                 return GameManager.MaxFPS.ToString();
@@ -117,7 +117,7 @@ public static class DevConsole
             return "";
         }).Register();
 
-        new DevCommand("screenSize", "change the screen size", args =>
+        new DevCommand("screenSize", "change the screen size", true, args =>
         {
             if (args.Length < 3)
                 return GameWindow.ScreenDimensions.ToString();
@@ -135,7 +135,7 @@ public static class DevConsole
             return "";
         }).Register();
 
-        new DevCommand("title", "change the title", args =>
+        new DevCommand("title", "change the title", true, args =>
         {
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 return "?";
@@ -149,13 +149,13 @@ public static class DevConsole
             return Console.Title;
         }).Register();
 
-        new DevCommand("exit", "quits the game", _ =>
+        new DevCommand("exit", "quits the game", true, _ =>
         {
             GameManager.Stop();
             return "";
         }).Register();
 
-        new DevCommand("haltAndCatchFire", "exits the game via fatal exception", _ =>
+        new DevCommand("haltAndCatchFire", "exits the game via fatal exception", true, _ =>
         {
             throw new Exception();
         }).Register();
