@@ -166,5 +166,17 @@ public static class DevConsole
             GameManager.Start();
             return "";
         }).Register();
+
+        new DevCommand("soundenabled", "is the sound enabled", true, args =>
+        {
+            if (args.Length == 1)
+                return Sound.Sound.Enabled.ToString();
+            args[1] = args[1].ToLower();
+            if (args[1] == "on" || args[1] == "true")
+                Sound.Sound.Enabled = true;
+            else if (args[1] == "off" || args[1] == "false")
+                Sound.Sound.Enabled = false;
+            return "";
+        }).Register();
     }
 }

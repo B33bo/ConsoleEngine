@@ -5,16 +5,19 @@ namespace ConsoleEngine.Sound;
 
 public static class Sound
 {
+    public static bool Enabled { get; set; } = true;
     public static bool SoundAvailable => RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 
     public static void PlaySound(params Note[] sound)
     {
-        Task.Factory.StartNew(() => PlaySoundThreaded(sound, null));
+        if (Enabled)
+            Task.Factory.StartNew(() => PlaySoundThreaded(sound, null));
     }
 
     public static void PlaySound(Note[] sound, Action onFinished)
     {
-        Task.Factory.StartNew(() => PlaySoundThreaded(sound, onFinished));
+        if (Enabled)
+            Task.Factory.StartNew(() => PlaySoundThreaded(sound, onFinished));
     }
 
     private static void PlaySoundThreaded(Note[] sound, Action? onFinished)
@@ -24,6 +27,8 @@ public static class Sound
 
         for (int i = 0; i < sound.Length; i++)
         {
+            if (!Enabled)
+                break;
             if ((int)sound[i].Frequency < 37)
             {
                 //delay
