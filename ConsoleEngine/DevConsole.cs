@@ -59,7 +59,7 @@ public static class DevConsole
             PerformCommand();
     }
 
-    public static void LoadBuiltinCommands()
+    private static void LoadBuiltinCommands()
     {
         didLoad = true;
 
@@ -158,6 +158,13 @@ public static class DevConsole
         new DevCommand("haltAndCatchFire", "exits the game via fatal exception", true, _ =>
         {
             throw new Exception();
+        }).Register();
+
+        new DevCommand("restart", "restart the game (and remove all objects)", true, _ =>
+        {
+            GameManager.Stop();
+            GameManager.Start();
+            return "";
         }).Register();
     }
 }

@@ -86,7 +86,8 @@ public static class GameManager
     public static void Stop()
     {
         IsPlaying = false;
-        GameManager.DoRendering = false;
+        DoRendering = false;
+        Input.askingQuestion = false;
         GameWindow.ResetInst();
         DevCommand.UnregisterAll();
         Console.Clear();
@@ -105,7 +106,13 @@ public static class GameManager
             {
                 if (!gameObjects[i].IsAlive)
                 {
+                    int beforeCount = gameObjects.Count;
                     gameObjects[i].OnDestroy();
+
+                    if (gameObjects.Count != beforeCount)
+                        //OnDestroy() called GameManager.Stop()
+                        return;
+
                     gameObjects.RemoveAt(i);
                     i--;
                     continue;
@@ -133,6 +140,9 @@ public static class GameManager
 
     public static void AddObject(GameObject gameObject)
     {
+        if (gameObject.IsAdded)
+            throw new InvalidOperationException("GameObject already added");
+        gameObject.IsAdded = true;
         gameObjects.Add(gameObject);
     }
 

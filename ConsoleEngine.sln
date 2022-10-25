@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleEngine", "ConsoleEng
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Snake", "Snake\Snake.csproj", "{589F4ED4-4E6C-45DF-8428-E0A8ACBEDE44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleEngineTesting", "ConsoleEngineTesting\ConsoleEngineTesting.csproj", "{456A1C00-166C-4C56-8B3A-19DF70A943F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleEngineTesting", "ConsoleEngineTesting\ConsoleEngineTesting.csproj", "{456A1C00-166C-4C56-8B3A-19DF70A943F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

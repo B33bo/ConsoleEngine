@@ -6,6 +6,7 @@ public class GameObject
 {
     private Vector _position;
     internal bool IsAlive { get; private set; } = true;
+    internal bool IsAdded { get; set; } = false;
     public Vector Position
     {
         get => _position;

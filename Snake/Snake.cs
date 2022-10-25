@@ -76,6 +76,8 @@ internal class Snake : GameObject
 
         if (key == ConsoleKey.Escape)
             GameManager.Stop();
+        if (key == ConsoleKey.T)
+            Destroy();
 
         if (-newDirection == directionOfLastMove)
             return;
