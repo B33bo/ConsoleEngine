@@ -88,6 +88,7 @@ public static class GameManager
         IsPlaying = false;
         GameManager.DoRendering = false;
         GameWindow.ResetInst();
+        DevCommand.UnregisterAll();
         Console.Clear();
         gameObjects.Clear();
         Console.WriteLine("Press any key to end");
@@ -104,6 +105,7 @@ public static class GameManager
             {
                 if (!gameObjects[i].IsAlive)
                 {
+                    gameObjects[i].OnDestroy();
                     gameObjects.RemoveAt(i);
                     i--;
                     continue;

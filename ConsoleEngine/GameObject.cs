@@ -56,8 +56,9 @@ public class GameObject
     {
         if (this is GameWindow)
             return;
+        if (!IsAlive)
+            return;
         IsAlive = false;
-        OnDestroy();
     }
 
     public virtual void Update(double deltaTime)
