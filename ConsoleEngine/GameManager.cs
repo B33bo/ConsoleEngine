@@ -1,9 +1,20 @@
 ﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace ConsoleEngine;
 
 public static class GameManager
 {
+    public static string Title
+    {
+        get
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                return Console.Title;
+            return "";
+        }
+        set => Console.Title = value;
+    }
     public static bool IsPlaying { get; private set; } = true;
     public static bool DoRendering { get; set; } = true;
 
