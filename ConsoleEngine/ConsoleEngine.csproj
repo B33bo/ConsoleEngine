@@ -10,6 +10,6 @@
     <AssemblyOriginatorKeyFile>C:\Users\B33bo\Desktop\B33bo\B33boSig.pfx</AssemblyOriginatorKeyFile>
     <AssemblyVersion>1.0.0.1</AssemblyVersion>
     <FileVersion>1.0.0.1</FileVersion>
-    <Version>$(VersionPrefix)1.0.5.3</Version>
+    <Version>$(VersionPrefix)1.0.6</Version>
   </PropertyGroup>
 </Project>
